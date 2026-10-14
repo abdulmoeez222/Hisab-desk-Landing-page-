@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #0f0f12;
+  --ink-2: #14141a;
+  --lime: #c6ff3d;
+  --cream: #fff4e6;
+  --paper: #f6f6ee;
+  --pink: #ff4f9a;
+  --berry: #b0105a;
+  --card-dark: #1d1d24;
+  --line-dark: #2c2c36;
+  --line-light: #e4e4da;
+  --panel: #e9e9df;
+  --panel-warm: #efe7dc;
+  --blush: #ffe3ef;
+  --outline: #1a1023;
+  --success: #2e7d32;
+  --wa-bubble: #d9fdd3;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-lime: var(--lime);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-pink: var(--pink);
+  --color-berry: var(--berry);
+  --color-card-dark: var(--card-dark);
+  --color-line-dark: var(--line-dark);
+  --color-line-light: var(--line-light);
+  --color-panel: var(--panel);
+  --color-panel-warm: var(--panel-warm);
+  --color-blush: var(--blush);
+  --color-outline: var(--outline);
+  --color-success: var(--success);
+  --color-wa: var(--wa-bubble);
+  --color-body-dark: #bdbdc6;
+  --color-body-light: #3e3e48;
+  --color-caption: #4a4a55;
+  --font-display: var(--font-syne), sans-serif;
+  --font-sans: var(--font-dm-sans), sans-serif;
+  --font-urdu: var(--font-nastaliq), serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ink);
+  color: var(--ink-2);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
