@@ -95,7 +95,7 @@ export default function Hero6() {
         />
       </div>
       <div className="relative z-30 container mx-auto px-6 lg:px-8">
-        <div className="grid w-full grid-cols-12 gap-8">
+        <div className="grid w-full grid-cols-12 gap-y-8 md:gap-8">
           <div className="col-span-12 flex flex-col items-center text-center md:col-span-8 md:col-start-3">
             <div className="flex flex-col items-center gap-2 text-center sm:gap-5">
               <div className="flex items-center gap-4">

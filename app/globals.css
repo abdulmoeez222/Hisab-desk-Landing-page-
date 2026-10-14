@@ -71,6 +71,52 @@ body {
   scrollbar-width: none;
 }
 
+/* Border beam (components/ui/border-beam.tsx) */
+@property --bb-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-beam-spin {
+  to {
+    --bb-angle: 360deg;
+  }
+}
+
+.border-beam-ring,
+.border-beam-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--bb-angle),
+    transparent 0deg,
+    transparent 230deg,
+    var(--bb-to) 290deg,
+    var(--bb-from) 345deg,
+    transparent 360deg
+  );
+  animation: border-beam-spin var(--bb-duration) linear infinite;
+  animation-delay: var(--bb-delay, 0s);
+}
+
+.border-beam-ring {
+  inset: 0;
+  z-index: 2;
+  padding: var(--bb-width);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+
+.border-beam-glow {
+  inset: -3px;
+  z-index: -1;
+  filter: blur(16px);
+  opacity: var(--bb-glow);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

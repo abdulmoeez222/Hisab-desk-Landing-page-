@@ -43,7 +43,7 @@ export function SiteNav({ home = true }: { home?: boolean }) {
           )}
         </div>
       </header>
-      <FloatingMenu className="md:hidden" items={items} />
+      <FloatingMenu className="md:hidden" placement="top" items={items} />
     </>
   );
 }

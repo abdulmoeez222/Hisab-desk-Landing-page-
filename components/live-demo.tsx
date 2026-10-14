@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
+import BorderBeam from "@/components/ui/border-beam";
 
 // Timings match public/live-demo.mp4 (a recording of the web app prototype), in video seconds
 const SPEED = 1.5;
@@ -74,6 +75,7 @@ export function LiveDemo() {
   return (
     <div ref={rootRef}>
       {/* Browser frame */}
+      <BorderBeam radius="1.4rem" duration={8} width={2}>
       <div className="overflow-hidden rounded-[1.4rem] border border-line-light bg-white shadow-[0_40px_80px_-40px_rgba(20,20,26,0.45)]">
         <div className="flex items-center gap-3 border-b border-line-light bg-paper px-4 py-3">
           <span className="flex gap-1.5" aria-hidden>
@@ -144,7 +146,7 @@ export function LiveDemo() {
           </span>
         </div>
       </div>
-
+      </BorderBeam>
     </div>
   );
 }

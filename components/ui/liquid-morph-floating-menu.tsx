@@ -20,6 +20,8 @@ interface MenuItem {
 interface FloatingMenuProps {
   items?: MenuItem[];
   className?: string;
+  /** "bottom": centred pill that opens upward. "top": top-right pill that opens downward. */
+  placement?: "bottom" | "top";
 }
 
 function MenuButton({
@@ -69,7 +71,7 @@ function MenuButton({
       onMouseLeave={handleLeave}
       aria-label={label}
       tabIndex={isOpen ? 0 : -1}
-      className="font-display text-[24px] font-extrabold uppercase leading-none overflow-hidden"
+      className="font-sans text-[24px] font-bold uppercase leading-none overflow-hidden"
       style={{
         color: PAPER,
         letterSpacing: "-0.03em",
@@ -123,7 +125,8 @@ function MenuButton({
   );
 }
 
-export default function FloatingMenu({ items, className = "" }: FloatingMenuProps) {
+export default function FloatingMenu({ items, className = "", placement = "bottom" }: FloatingMenuProps) {
+  const top = placement === "top";
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -171,14 +174,14 @@ export default function FloatingMenu({ items, className = "" }: FloatingMenuProp
   return (
     <motion.div
       ref={containerRef}
-      className={`fixed bottom-10 left-1/2 z-[100] ${className}`}
-      style={{ x: "-50%", pointerEvents: "auto" }}
-      initial={{ opacity: 0, y: 20 }}
+      className={`fixed z-[100] ${top ? "right-4 top-2" : "bottom-10 left-1/2"} ${className}`}
+      style={{ x: top ? 0 : "-50%", pointerEvents: "auto" }}
+      initial={{ opacity: 0, y: top ? -20 : 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease }}
     >
       <motion.div
-        className="relative overflow-hidden flex flex-col font-sans font-semibold shadow-[0_12px_40px_-12px_rgba(0,0,0,0.6)]"
+        className={`relative overflow-hidden flex ${top ? "flex-col-reverse" : "flex-col"} font-sans font-semibold shadow-[0_12px_40px_-12px_rgba(0,0,0,0.6)]`}
         onClick={() => {
           if (!isOpen) setIsOpen(true);
         }}
@@ -224,7 +227,7 @@ export default function FloatingMenu({ items, className = "" }: FloatingMenuProp
             borderRadius: "50%",
             x: "-50%",
           }}
-          animate={{ bottom: isOpen ? "-20%" : "-200%" }}
+          animate={top ? { top: isOpen ? "-20%" : "-200%" } : { bottom: isOpen ? "-20%" : "-200%" }}
           transition={{
             duration: 0.8,
             ease,
@@ -268,7 +271,8 @@ export default function FloatingMenu({ items, className = "" }: FloatingMenuProp
           animate={{
             paddingLeft: isOpen ? 24 : 20,
             paddingRight: isOpen ? 24 : 20,
-            paddingBottom: isOpen ? 24 : 0,
+            paddingBottom: !top && isOpen ? 24 : 0,
+            paddingTop: top && isOpen ? 24 : 0,
             height: 48,
           }}
           transition={{ duration: 0.8, ease }}

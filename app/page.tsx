@@ -23,6 +23,7 @@ import PhoneMockupBasic from "@/components/ui/phone-mockups-1";
 import { SiteNav } from "@/components/site-nav";
 import { LiveDemo } from "@/components/live-demo";
 import TextHighlight from "@/components/ui/text-highlight";
+import BorderBeam from "@/components/ui/border-beam";
 import ReceiptTiers from "@/components/ui/receipt-tiers";
 import type { Plan } from "@/components/ui/receipt-tiers-utils/types";
 import { QuoteCompare } from "@/components/mockups";
@@ -143,12 +144,14 @@ function Problem() {
           </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
             {items.map((it, i) => (
-              <Reveal key={it.t} delay={i * 0.08}>
-                <div className="h-full rounded-3xl border border-line-dark bg-card-dark p-6">
-                  <it.icon className="size-7 text-pink" strokeWidth={1.5} />
-                  <h3 className="mt-5 text-xl font-bold text-paper">{it.t}</h3>
-                  <p className="mt-2 text-body-dark">{it.d}</p>
-                </div>
+              <Reveal key={it.t} delay={i * 0.08} className="h-full">
+                <BorderBeam className="h-full" colorFrom="#FF4F9A" colorTo="#B0105A" duration={7} delay={i * 2.3} glow={0.35}>
+                  <div className="h-full rounded-3xl border border-line-dark bg-card-dark p-6">
+                    <it.icon className="size-7 text-pink" strokeWidth={1.5} />
+                    <h3 className="mt-5 text-xl font-bold text-paper">{it.t}</h3>
+                    <p className="mt-2 text-body-dark">{it.d}</p>
+                  </div>
+                </BorderBeam>
               </Reveal>
             ))}
           </div>
@@ -290,12 +293,14 @@ function Privacy() {
         </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {points.map((p, i) => (
-            <Reveal key={p.t} delay={i * 0.06}>
-              <div className="h-full rounded-3xl border border-line-dark bg-card-dark p-6">
-                <p.icon className="size-6 text-lime" strokeWidth={1.5} />
-                <h3 className="mt-5 text-lg font-bold text-paper">{p.t}</h3>
-                <p className="mt-1.5 text-sm text-body-dark">{p.d}</p>
-              </div>
+            <Reveal key={p.t} delay={i * 0.06} className="h-full">
+              <BorderBeam className="h-full" colorFrom="#C6FF3D" colorTo="#2E7D32" duration={8} delay={i * 2} glow={0.35}>
+                <div className="h-full rounded-3xl border border-line-dark bg-card-dark p-6">
+                  <p.icon className="size-6 text-lime" strokeWidth={1.5} />
+                  <h3 className="mt-5 text-lg font-bold text-paper">{p.t}</h3>
+                  <p className="mt-1.5 text-sm text-body-dark">{p.d}</p>
+                </div>
+              </BorderBeam>
             </Reveal>
           ))}
         </div>
@@ -380,6 +385,7 @@ function FinalCta() {
           </p>
           <Rasidi mood="happy" sparkle={false} body="#FFFFFF" className="mt-8 hidden w-40 lg:block" />
         </div>
+        <BorderBeam radius="1.5rem" colorFrom="#FFFFFF" colorTo="#FF4F9A" duration={5} width={2}>
         <div className="rounded-3xl border-2 border-lime bg-lime p-1">
           <div className="rounded-[1.35rem] bg-[#d6ff70] p-5 sm:p-6">
             <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-ink-2">
@@ -404,6 +410,7 @@ function FinalCta() {
             />
           </div>
         </div>
+        </BorderBeam>
       </div>
     </section>
   );
