@@ -1,0 +1,16 @@
+/* v18r (21 Oct 2026): wider desktop container + ambient side light. Desktop only (>=1025px); tablet/mobile untouched. Loaded last. */
+@media (min-width:1025px){
+  .cv1{--wrap-max:1400px;--gutter:clamp(20px,4vw,64px)}
+  .cv1 .wrap,.cv1 .pm-wrap{width:max(min(1240px,100% - 40px),min(var(--wrap-max),100% - 2 * var(--gutter)));margin-inline:auto}
+  .cv1 .pt-box{max-width:none}
+  /* readable measure inside the wider cards */
+  .cv1 .mb-body,.cv1 .wa-sub,.cv1 .wa-small,.cv1 .sec-head p,.cv1 .faq-a p,.cv1 .join-copy > p{max-width:68ch}
+}
+/* wide screens: the black sides get a soft lime (left) / pink (right) edge light instead of dead black; scrolls with the page, no seams */
+@media (min-width:1500px){
+  html body.cv1{background:linear-gradient(90deg,rgba(198,255,61,.06),rgba(198,255,61,0) 16%,rgba(255,79,154,0) 84%,rgba(255,79,154,.055)),#000}
+  .cv1 .hero,.cv1 main{background:transparent}
+}
+/* hero blobs fade out before the hero ends, so there's no hard edge under it */
+@media (min-width:1025px){.cv1 .hero-bg{-webkit-mask-image:linear-gradient(#000 35%,transparent 92%);mask-image:linear-gradient(#000 35%,transparent 92%)}}
+@media (min-width:1025px){.cv1 .mb-head .mb-dull{text-wrap:balance}}
